@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema(
         date:{
             type:String,
             require:true
+        },
+        guardian:{
+            type:Boolean,
+            default:false
         }
     }
 );
