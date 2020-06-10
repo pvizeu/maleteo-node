@@ -24,21 +24,34 @@ const UserSchema = new mongoose.Schema(
             type:String,
             require:true
         },
+        image_url: {
+            type: String
+        },
         guardian:{
             type:Boolean,
             default:false
         },
         spaces:[
             {
-            title:String,
-                require:true
-        },
-            {
-                localization:String
+            title:
+                {
+                    type:String
+                }
             }
         ]
     }
 );
+
+UserSchema.pre('save', async function (next) {
+    try {
+        this.password = await bcrypt.hash(this.password, 10);
+        next();
+    } catch (err) {
+    console.log(err);
+    throw err;
+}
+
+})
 
 const  User = mongoose.model('user', UserSchema);
 //exportacion
