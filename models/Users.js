@@ -27,7 +27,16 @@ const UserSchema = new mongoose.Schema(
         guardian:{
             type:Boolean,
             default:false
-        }
+        },
+        spaces:[
+            {
+            title:String,
+                require:true
+        },
+            {
+                localization:String
+            }
+        ]
     }
 );
 
