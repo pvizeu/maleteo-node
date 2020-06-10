@@ -1,35 +1,34 @@
 const express = require('express');
 const bodyParser= require('body-parser');
 const passport = require('passport');
+const multer = require('multer');
 const cookieSession = require('cookie-session');
+const path = require('path');
+require('dotenv').config();
 var app = express();
 
 //Rutas cargadas
-
+const userRoutes = require('./routes/users')
 
 
 //mideleware
-app.use(express.urlencoded({extended:false}));
+
 app.use(express.json());
-//cookies para google
-app.use(cookieSession({
-    name: 'session',
-    keys: ['key1', 'key2']
-}))
-//cors
+app.use(express.urlencoded({extended:false}));
 
-//google
-//app.get('/auth/google',
-  //  passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' });
-
-///app.get('/auth/google/callback',
-   // passport.authenticate('google', { failureRedirect: '/login' }),
-    //function(req, res) {
-      //  res.redirect('/');
-    //});
 //Rutas
+app.use('/', userRoutes);
 
 
 
+
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    console.log(err);
+    res.sendStatus(err.status || 500);
+});
 //Exportar
 module.exports = app;
