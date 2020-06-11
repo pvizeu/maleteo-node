@@ -10,12 +10,12 @@ const server = http.createServer(app);
 const port = 3000;
 
 //conexion con la bse de datos
-mongoose.promise=global.promise;
-mongoose.connect('mongodb://127.0.0.1:27017/udemy')
-    .then(()=>{
-        console.log('base de datos conectada');
-    })
-    .catch(err=> console.log('err'));
+//mongoose.promise=global.promise;
+//mongoose.connect('mongodb://127.0.0.1:27017/udemy')
+//    .then(()=>{
+//        console.log('base de datos conectada');
+//    })
+//    .catch(err=> console.log('err'));
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, 'public')));
 server.listen(app.get('port'), ()=>{

@@ -1,10 +1,16 @@
 const express = require('express');
+var createError = require('http-errors');
 const bodyParser= require('body-parser');
+var cookieParser = require('cookie-parser'); 
+var logger = require('morgan');
 const passport = require('passport');
 const multer = require('multer');
 const cookieSession = require('cookie-session');
 const path = require('path');
 require('dotenv').config();
+const mongoMiddlewares = require('./middlewares/mongo');
+
+//objeto app
 var app = express();
 
 //Rutas cargadas
@@ -12,9 +18,11 @@ const userRoutes = require('./routes/users')
 
 
 //mideleware
-
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
+app.use(mongoMiddlewares);      //conexion a Mongo
 
 //Rutas
 app.use('/', userRoutes);

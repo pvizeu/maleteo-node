@@ -8,7 +8,8 @@ const SpaceSchema = new mongoose.Schema(
             type: mongoose.Schema.ObjectId, ref:'user'
         },
         alias:{
-            type: String
+            type: String,
+            required:true
         },
         title:{
             type:String

@@ -4,48 +4,40 @@ const bcrypt = require('bcrypt');
 const UserSchema = new mongoose.Schema(
     {
         _id: mongoose.Schema.Types.ObjectId,
-        email:{
-            type:String,
-            unique:true,
-            require:true
-        },
         name:{
             type: String,
             require: true
         },
-        surName:{
+        surname:{
             type:String,
+            require:true
+        },
+        email:{
+            type:String,
+            unique:true,
             require:true
         },
         password:{
             type:String,
             require:true
         },
-        date:{
+        birthdate:{
             type:String,
             require:true
-        },
-        image_url: {
-            type: String
         },
         guardian:{
             type:Boolean,
             default:false
-        },
-        spaces:[
-            {
-            title:
-                {
-                    type:String
-                }
-            }
-        ]
+        }
+    },
+    {
+        timestamps: true
     }
 );
 
 UserSchema.pre('save', async function (next) {
     try {
-        this.password = await bcrypt.hash(this.password, 10);
+        this.password = await bcrypt.hash(this.password, 12);
         next();
     } catch (err) {
     console.log(err);
