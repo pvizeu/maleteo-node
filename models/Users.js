@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema(
     {
+        _id: mongoose.Schema.Types.ObjectId,
         email:{
             type:String,
             unique:true,
@@ -31,14 +32,6 @@ const UserSchema = new mongoose.Schema(
             type:Boolean,
             default:false
         },
-        spaces:[
-            {
-            title:
-                {
-                    type:String
-                }
-            }
-        ]
     }
 );
 
