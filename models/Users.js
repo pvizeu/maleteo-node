@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema(
     {
@@ -15,10 +14,10 @@ const UserSchema = new mongoose.Schema(
     {timestamps: true}
 );
 
-UserSchema.pre('save', async function (next) {
+/*UserSchema.pre('save', async function (next) {
     try {  //falta validar la fecha
-        this.password = await bcrypt.hash(this.password, 12);
-        this.validate().catch(error => {
+        //this.password = await bcrypt.hash(this.password, 12);
+        /*this.validate().catch(error => {
             assert.ok(error);
             assert.equal(error.errors['name'].message, 'nombre requerido');
             assert.equal(error.errors['email'].message, 'Email validation failed');
@@ -31,7 +30,7 @@ UserSchema.pre('save', async function (next) {
         throw err;
     }
 
-})
+})*/
 
 const  users = mongoose.model('users', UserSchema);
 //exportacion

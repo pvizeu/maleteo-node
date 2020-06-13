@@ -1,11 +1,11 @@
 const crud = require('../lib/crudExperiences');
+const crud1 = require('../lib/crudBlogs');
 
-
-const fullListOfExperiences = async (req,res,err) => { //lee filtrando email o name o el primero
+const fullListOfExperiences = async (req,res,next) => { //lee filtrando email o name o el primero
     try{
        // if(req.query.email){
-        console.log("hemos entrado en el controlador de experiences")
-        const experiences= await crud.findexperiences(req,res);
+        console.log("hemos entrado en el controlador de experiences");
+        const experiences= await crud.findExp(req,res,next);
         console.log("hemos salido de la llamada a findexperiences")
         console.log(experiences);
         if(Object.keys(experiences).length == 0) res.status(202).json({status:202,message:"no existe experiences",data:experiences});

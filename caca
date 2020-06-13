@@ -1,0 +1,9 @@
+
+ "guardian": false,
+"_id": "5ee0ed1dbcbd693a9e2afa9a",
+"name": "pedro",
+"surname": "vizeu",
+"email": "pedro@mail.com",
+"birthdate": "1956-05-22T00:00:00.000Z",
+"password": "$2y$12$jm0c3CLsmNrBstQtcAwimeL1T4OSgOCVc3.xd8WiMAJf7yanz5LBO"
+}

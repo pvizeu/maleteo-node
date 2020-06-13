@@ -15,8 +15,8 @@ const newUser = async (req, res) => {
 const findOneUser = async (req,res,err) => { //lee filtrando email o name o el primero
     try{
        // if(req.query.email){
-        const user = await crud.findOneUser(req,res);
-        if(Object.keys(user).length == 0) res.status(202).json({status:202,message:"no existe ese email",data:user});
+        const user = await crud.findOneUser(req.query.email);
+        if(Object.keys(user).length == 0) res.status(200).json({status:404,message:"no paso el email",data:user});
 
         console.log(user);
         //res.json(newUser);
@@ -24,17 +24,31 @@ const findOneUser = async (req,res,err) => { //lee filtrando email o name o el p
         //}
     }
     catch(err){   
-        res.status(403).json({status:403,message:err.message});
+        res.status(404).json({status:404,message:err.message,data:user});
     }
 
 };
+const updateOneUser = async(req,res,next)=>{
+    try{
+        const user=await crud.updateOneUser(req,res,next)
+        if(err)res.status(401).json({status:401,message:err.message,data:user});
+        res.status(200).json({status:200,message:"modificado correctamente",data:user});
+    }
+    catch(err){   
+        res.status(401).json({status:401,message:err.message,data:user});
+    }
+
+};
+
 const addImgUser = async (req, res) => {
 
     await crud.addImgToUser(req.params.id, req.cloudinaryImgUrl);
     res.json({img: true});
 };
+
 module.exports = {
     newUser,
     findOneUser,
+    updateOneUser,
     addImgUser
 };

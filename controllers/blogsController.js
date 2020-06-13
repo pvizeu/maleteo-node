@@ -1,6 +1,5 @@
 const crud = require('../lib/crudBlogs');
 
-
 const fullListOfBlogs = async (req,res,err) => { //lee filtrando email o name o el primero
     try{
        // if(req.query.email){

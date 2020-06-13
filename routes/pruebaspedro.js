@@ -15,7 +15,8 @@ router.route('/new')
 
 //espera query.email=pedro@mail.com sin ""
 router.route('/users')
-.get(userController.findOneUser);
+.get(userController.findOneUser)
+.put(userController.updateOneUser);
 
 router.route('/blogs')
 .get(blogsController.fullListOfBlogs);
