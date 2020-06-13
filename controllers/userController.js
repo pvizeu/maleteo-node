@@ -31,7 +31,6 @@ const findOneUser = async (req,res,err) => { //lee filtrando email o name o el p
 const updateOneUser = async(req,res,next)=>{
     try{
         const user=await crud.updateOneUser(req,res,next)
-        if(err)res.status(401).json({status:401,message:err.message,data:user});
         res.status(200).json({status:200,message:"modificado correctamente",data:user});
     }
     catch(err){   

@@ -14,14 +14,14 @@ const UserSchema = new mongoose.Schema(
     {timestamps: true}
 );
 
-/*UserSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next) {
     try {  //falta validar la fecha
         //this.password = await bcrypt.hash(this.password, 12);
-        /*this.validate().catch(error => {
+       /* this.validate().catch(error => {
             assert.ok(error);
             assert.equal(error.errors['name'].message, 'nombre requerido');
             assert.equal(error.errors['email'].message, 'Email validation failed');
-          });
+          });*/
           console.log('paso por el presave');
         next();
     } catch (err) {
@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema(
         throw err;
     }
 
-})*/
+})
 
 const  users = mongoose.model('users', UserSchema);
 //exportacion
