@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
+//user_id: {type: mongoose.Schema.ObjectId, ref:'users'},
 const SpaceSchema = new mongoose.Schema(
     {
         _id: mongoose.Schema.Types.ObjectId,
-        user_id: {type: mongoose.Schema.ObjectId, ref:'users'},
+        user: {type: String,required:true},
         alias:{type: String,required:true},
         title:{type:String,required:true},
         localization:{type:String,unique:true,required:true},
