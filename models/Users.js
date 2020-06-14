@@ -26,7 +26,7 @@ UserSchema.pre('save', async function (next) {
         next();
     } catch (err) {
        console.log(err);
-       res.json({err: err});
+       res.json(err);
         throw err;
     }
 

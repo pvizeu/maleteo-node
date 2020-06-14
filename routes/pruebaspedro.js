@@ -8,6 +8,7 @@ const userController = require('../controllers/userController')
 const imgController = require('../controllers/cloudinaryController')
 const experiencesController = require('../controllers/experiencesController')
 const blogsController = require('../controllers/blogsController')
+const spacesController = require('../controllers/spacesController')
 
 router.route('/new')
 .post(userController.newUser);
@@ -23,6 +24,9 @@ router.route('/blogs')
 
 router.route('/experiences')
 .get(experiencesController.fullListOfExperiences);
+
+router.route('/spaces/new')
+.post(spacesController.newSpace);
 
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const spaces = mongoose.model('spaces')
 
 const SpaceSchema = new mongoose.Schema(
     {
@@ -19,7 +18,19 @@ const SpaceSchema = new mongoose.Schema(
         longitud:{type:Number}
     },
     {timestamps: true}
-)
+);
+
+SpaceSchema.pre('save', async function (next) {
+    try {  
+          console.log('paso por el presave');
+        next(); 
+    } catch (err) {
+       console.log(err);
+       res.json(err);
+        throw err;
+    }
+
+})
 
 const spaces = mongoose.model('spaces', SpaceSchema);
 module.exports = spaces;
