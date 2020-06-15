@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 const SpaceSchema = new mongoose.Schema(
     {
         _id: mongoose.Schema.Types.ObjectId,
-        user: {type: String,required:true},
+        //userid: {type: String, required:true},  //es el id de users
+        //_userid:mongoose.Schema.Types.ObjectId, //cre un nuevo objeto
+        email:{type:String,required:true},
         alias:{type: String,required:true},
-        title:{type:String,required:true},
+        title:{type:String,unique:true,required:true},
         localization:{type:String,unique:true,required:true},
         photos:[{type:Array}],
         property:{type:String,enum:["casa","hotel","establecimiento"]},

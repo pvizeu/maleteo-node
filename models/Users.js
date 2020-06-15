@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema(
         birthdate:{type:Date},
         guardian:{type:Boolean,default:false},
         photo:{type:String}
+        //spaces:[{type: mongoose.Schema.ObjectId, ref:'spaces'}]
     },
     {timestamps: true}
 );

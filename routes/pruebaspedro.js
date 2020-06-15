@@ -28,5 +28,6 @@ router.route('/experiences')
 router.route('/spaces/new')
 .post(spacesController.newSpace);
 
-
+router.route('/spaces')
+.get(spacesController.findSpaces);
 module.exports = router;
