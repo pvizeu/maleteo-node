@@ -29,5 +29,7 @@ router.route('/spaces/new')
 .post(spacesController.newSpace);
 
 router.route('/spaces')
-.get(spacesController.findSpaces);
+.get(spacesController.findSpaces)
+.put(spacesController.updateOneSpace);
+
 module.exports = router;

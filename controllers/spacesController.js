@@ -22,8 +22,20 @@ const findSpaces = async (req,res) => {
         res.status(401).json({status:401,message:err.message});
     }
 };
+const updateOneSpace = async(req,res)=>{
+    let spaces;
+    try{
+        spaces=await crud.updateOneSpace(req);
+        res.status(200).json({status:200,message:"modificado correctamente",data:spaces});
+    }
+    catch(err){   
+        console.log(err.stack);
+        res.status(401).json({status:401,message:err.message,data:[]});
+    }
 
+};
 module.exports = {
     newSpace,
-    findSpaces
+    findSpaces,
+    updateOneSpace
 };
