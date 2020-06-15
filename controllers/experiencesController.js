@@ -1,5 +1,4 @@
 const crud = require('../lib/crudExperiences');
-const crud1 = require('../lib/crudBlogs');
 
 const fullListOfExperiences = async (req,res,next) => { //lee filtrando email o name o el primero
     try{

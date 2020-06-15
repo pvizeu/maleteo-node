@@ -3,16 +3,27 @@ const mongoose = require('mongoose');
 const ReservationSchema = new mongoose.Schema(
     {
         _id: mongoose.Schema.Types.ObjectId,  //no hace falta
-        user_id: {type: mongoose.Schema.ObjectId, ref:'users'},
-        guardian_id:{type: mongoose.Schema.ObjectId, ref:'users'},
-        space_id:{type: mongoose.Schema.ObjectId, ref:'spaces'},
-        deliver:{type:Date,default:Date.now},
-        removal:{type: Date,default:Date.now},
+        useremail: {type:String,required:true},  //users.email
+        guardianemail:{type:String,required:true},   //users.email
+        spacetitle:{type:String,required:true},  //spaces.title
+        deliver:{type:Date,default:Date.now,required:true},
+        removal:{type: Date,default:Date.now,required:true},
         pieces:{type:Number,required:true},
         code:{type:String,required:true},
-        state:{type:String, enum:["reject","accept","pending"]},
-        price:{type:Number}
+        state:{type:String, enum:["reject","accept","pending"],default:"pending"},
+        price:{type:Number,required:true}
     }
-)
+);
+ReservationSchema.pre('save', async function (next) {
+    try {  
+          console.log('paso por el presave');
+        next(); 
+    } catch (err) {
+       console.log(err);
+       res.json(err);
+        throw err;
+    }
+
+});
 const reservations = mongoose.model('reservations', ReservationSchema);
-model.exports = reservations;
+module.exports = reservations;

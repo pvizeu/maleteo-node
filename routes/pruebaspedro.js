@@ -9,6 +9,7 @@ const imgController = require('../controllers/cloudinaryController')
 const experiencesController = require('../controllers/experiencesController')
 const blogsController = require('../controllers/blogsController')
 const spacesController = require('../controllers/spacesController')
+const reservationsController = require('../controllers/reservationsController')
 
 router.route('/new')
 .post(userController.newUser);
@@ -31,5 +32,8 @@ router.route('/spaces/new')
 router.route('/spaces')
 .get(spacesController.findSpaces)
 .put(spacesController.updateOneSpace);
+
+router.route('/reservations/new')
+.post(reservationsController.newReservation);
 
 module.exports = router;
