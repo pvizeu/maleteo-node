@@ -7,7 +7,7 @@ const fullListOfExperiences = async (req,res,next) => { //lee filtrando email o 
         const experiences= await crud.findExp(req,res,next);
         console.log("hemos salido de la llamada a findexperiences")
         console.log(experiences);
-        if(Object.keys(experiences).length == 0) res.status(202).json({status:202,message:"no existe experiences",data:experiences});
+        if(Object.keys(experiences).length == 0) res.status(200).json({status:404,message:"NOT FOUND",data:[]});
 
         //res.json(newUser);
         res.status(200).json({status:200,message:"leido correctamente",data:experiences});

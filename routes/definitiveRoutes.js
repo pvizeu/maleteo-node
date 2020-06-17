@@ -14,7 +14,6 @@ const reservationsController = require('../controllers/reservationsController')
 router.route('/new')
 .post(userController.newUser);
 
-
 //espera query.email=pedro@mail.com sin ""
 router.route('/users')
 .get(userController.findOneUser)
@@ -39,5 +38,8 @@ router.route('/reservations/new')
 router.route('/reservations')
 .get(reservationsController.findReservations)
 .put(reservationsController.updatebyIdState)
+
+router.route('/imagen')
+    .post(upload.single('image'), imgController, userController.addImgUser);
 
 module.exports = router;

@@ -6,7 +6,8 @@ const ExperiencesSchema = new mongoose.Schema(
         title:{type:String},
         text:{type:String},
         rating:{type:Number, enum:[0,1,2,3,4,5]}
-    }
+    },
+    {timestamps: true}
 )
 const  experiences = mongoose.model('experiences', ExperiencesSchema);
 //exportacion

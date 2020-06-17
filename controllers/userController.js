@@ -8,7 +8,7 @@ const newUser = async (req, res) => {
         res.status(200).json({status:200,message:"Insertado correctamente",data:newUser});
     }
     catch(err){
-        res.status(401).json({status:401,message:err.message});
+        res.status(401).json({status:401,message:err.message,data:[]});
     }
 
 };
@@ -16,7 +16,7 @@ const findOneUser = async (req,res,err) => { //lee filtrando email o name o el p
     try{
        // if(req.query.email){
         const user = await crud.findOneUser(req.query.email);
-        if(Object.keys(user).length == 0) res.status(200).json({status:404,message:"no paso el email",data:user});
+        if(Object.keys(user).length == 0) res.status(200).json({status:404,message:"NOT FOUND email",data:[]});
 
         console.log(user);
         //res.json(newUser);
@@ -30,11 +30,12 @@ const findOneUser = async (req,res,err) => { //lee filtrando email o name o el p
 };
 const updateOneUser = async(req,res,next)=>{
     try{
-        const user=await crud.updateOneUser(req,res,next)
+        const user=await crud.updateOneUser(req);
+        if(Object.keys(user).length == 0) res.status(200).json({status:404,message:"NOT FOUND email",data:[]});
         res.status(200).json({status:200,message:"modificado correctamente",data:user});
     }
     catch(err){   
-        res.status(401).json({status:401,message:err.message,data:user});
+        res.status(401).json({status:401,message:err.message,data:[]});
     }
 
 };

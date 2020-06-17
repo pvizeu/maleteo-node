@@ -12,7 +12,8 @@ const ReservationSchema = new mongoose.Schema(
         code:{type:String,required:true},
         state:{type:String, enum:["reject","accept","pending"],default:"pending"},
         price:{type:Number,required:true}
-    }
+    },
+    {timestamps: true}
 );
 ReservationSchema.pre('save', async function (next) {
     try {  

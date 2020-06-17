@@ -14,6 +14,7 @@ const mongoMiddlewares = require('./middlewares/mongo');
 var app = express();
 
 //Rutas cargadas
+const definitiveRoutes = require('./routes/definitiveRoutes');
 const userRoutes = require('./routes/users');
 const alejandroRoutes = require('./routes/pruebasalejandro');
 const pedroRoutes = require('./routes/pruebaspedro');
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use(mongoMiddlewares);      //conexion a Mongo
 
 //Rutas
+app.use('/', definitiveRoutes);
 app.use('/', userRoutes);
 app.use('/pruebasAle', alejandroRoutes);
 app.use('/pruebasped', pedroRoutes);

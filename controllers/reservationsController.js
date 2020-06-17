@@ -9,32 +9,37 @@ const newReservation = async (req, res) => {
         res.status(200).json({status:200,message:"Insertado correctamente",data:newReservation});
     }
     catch(err){
-        res.status(401).json({status:401,message:err.message});
+        res.status(401).json({status:401,message:err.message,data:[]});
     }
 };
 
-const findSpaces = async (req,res) => {
+const findReservations = async (req,res) => {
     try {
         console.log("entra en spaces.Controller.findSpaces");
-        const spaces = await crud.findSpaces(req,res);
-        res.status(200).json({status:200,message:"leido correctamente",data:spaces});
+        const reservations = await crud.findReservations(req,res);
+        console.log(typeof(reservations));
+        if(Object.keys(reservations).length == 0){es.status(200).json({status:404,message:"not Found",data:[]})}
+        res.status(200).json({status:200,message:"leido correctamente",data:reservations});
     }
     catch (err) {
-        res.status(401).json({status:401,message:err.message});
+        console.log(err.message.Error);
+        res.status(401).json({status:401,message:err.message,data:[]});
     }
 };
-const updateOneSpace = async(req,res)=>{
-    let spaces;
+const updatebyIdState = async(req,res)=>{
     try{
-        spaces=await crud.updateOneSpace(req);
-        res.status(200).json({status:200,message:"modificado correctamente",data:spaces});
+        console.log("entra en spaces.Controller.updatebyIdStateReservation");
+        reservations=await crud.updatebyIdStateReservation(req);
+        if(Object.keys(reservations).length == 0){res.status(200).json({status:404,message:"not Found",data:[]})}
+        res.status(200).json({status:200,message:"modificado correctamente",data:reservations});
     }
     catch(err){   
         console.log(err.stack);
         res.status(401).json({status:401,message:err.message,data:[]});
     }
-
 };
 module.exports = {
-    newReservation
+    newReservation,
+    findReservations,
+    updatebyIdState
 };

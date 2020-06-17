@@ -9,9 +9,9 @@ const uploadToCloudinary = (req, res, next) => {
     if (req.file) {
 
         cloudinary.config({
-            cloud_name:'dqp7c3bnr' ,
-            api_key: '199421971222872',
-            api_secret:'i3AoS1z0nzwvEnrZuPaZDZe3cfY'
+            cloud_name:process.env.CLOUD_NAME,       //'dqp7c3bnr'
+            api_key: process.env.API_KEY,          //'199421971222872',
+            api_secret:process.env.API_SECRET   //'i3AoS1z0nzwvEnrZuPaZDZe3cfY'
         });
 
         let cld_upload_stream = cloudinary.uploader.upload_stream(

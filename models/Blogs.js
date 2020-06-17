@@ -7,7 +7,8 @@ const BlogSchema = new mongoose.Schema(
         photo:{type: String},
         title:{type:String},
         text:{type:String}
-    }
+    },
+    {timestamps: true}
 )
 const blogs = mongoose.model('blogs', BlogSchema);
 module.exports = blogs;
