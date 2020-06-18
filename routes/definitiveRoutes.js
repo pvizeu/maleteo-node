@@ -11,10 +11,13 @@ const blogsController = require('../controllers/blogsController')
 const spacesController = require('../controllers/spacesController')
 const reservationsController = require('../controllers/reservationsController')
 
+
 router.route('/new')
 .post(userController.newUser);
 
 //espera query.email=pedro@mail.com sin ""
+
+
 router.route('/users')
 .get(userController.findOneUser)
 .put(userController.updateOneUser);
@@ -29,6 +32,7 @@ router.route('/spaces/new')
 .post(spacesController.newSpace);
 
 router.route('/spaces')
+
 .get(spacesController.findSpaces)
 .put(spacesController.updateOneSpace);
 
