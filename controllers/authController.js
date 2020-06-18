@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const crudUsers = require('../lib/crudUser');
 const bcrypt = require('bcrypt');
 
@@ -24,14 +25,16 @@ const authUser = async (req, res, next) => {
     }
 };
 
+
 const getToken = (req, res) => {
 
     jwt.sign({
         email: req.body.email,
         password: req.body.password
-    }, process.env.SECRET, { expiresIn: '120s' }, function (err, token) {
+
+    }, process.env.SECRET, { expiresIn: '86400s' }, function (err, token) {
         if (err) throw err;
-        res.json({token: token});
+        return {token: token};
     });
 };
 
@@ -57,4 +60,5 @@ module.exports = {
     getToken,
     authUser,
     verifyToken
-}
+};
+
