@@ -12,7 +12,7 @@ const reservationsController = require('../controllers/reservationsController')
 
 
 router.route('/token')
-    .get(authController.authUser, authController.getToken);
+    .get(authController.authUser);
 
 
 router.route('/imagen')
