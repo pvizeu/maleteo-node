@@ -4,7 +4,7 @@ module.exports = async (req, res, next) => {
 
     try {
         
-        await mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+        await mongoose.connect(process.env.DB_URI , {useNewUrlParser: true, useUnifiedTopology: true});
         console.log('ATLAS_mongodb/maleteo connected!');
         next();
 
