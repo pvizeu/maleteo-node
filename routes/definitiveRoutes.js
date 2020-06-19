@@ -10,11 +10,17 @@ const experiencesController = require('../controllers/experiencesController')
 const blogsController = require('../controllers/blogsController')
 const spacesController = require('../controllers/spacesController')
 const reservationsController = require('../controllers/reservationsController')
+const authController =require('../controllers/authController')
 
 router.route('/new')
 .post(userController.newUser);
 
-//espera query.email=pedro@mail.com sin ""
+
+router.route('/token')
+//.get(authController.authUser);
+.get(authController.authUser,authController.getToken);
+
+
 router.route('/users')
 .get(userController.findOneUser)
 .put(userController.updateOneUser);
@@ -23,7 +29,7 @@ router.route('/blogs')
 .get(blogsController.fullListOfBlogs);
 
 router.route('/experiences')
-.get(experiencesController.fullListOfExperiences);
+.get(experiencesController.fullListOfExperiences); 
 
 router.route('/spaces/new')
 .post(spacesController.newSpace);
@@ -40,6 +46,6 @@ router.route('/reservations')
 .put(reservationsController.updatebyIdState)
 
 router.route('/imagen')
-    .post(upload.single('image'), imgController, userController.addImgUser);
+.post(upload.single('image'), imgController, userController.addImgUser);
 
 module.exports = router;

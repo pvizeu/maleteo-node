@@ -26,9 +26,14 @@ const findSpaces = async (req,res) => {
 const updateOneSpace = async(req,res)=>{
     let spaces;
     try{
-        spaces=await crud.updateOneSpace(req);
-        if(Object.keys(spaces).length == 0){res.status(200).json({status:404,message:"not Found",data:[]})}
-        res.status(200).json({status:200,message:"modificado correctamente",data:spaces});
+        spaces=await crud.updateOneSpace(req); 
+        console.log("spaces modificado",spaces);
+        if(spaces == undefined){
+            res.status(200).json({status:404,message:"not Found",data:[]});
+        }
+        else{
+            res.status(200).json({status:200,message:"modificado correctamente",data:spaces});
+        }
     }
     catch(err){   
         console.log(err.stack);
