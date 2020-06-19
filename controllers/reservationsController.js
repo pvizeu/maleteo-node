@@ -17,7 +17,7 @@ const findReservations = async (req,res) => {
     try {
         console.log("entra en spaces.Controller.findSpaces");
         const reservations = await crud.findReservations(req,res);
-        console.log(typeof(reservations));
+        console.log(reservations);
         if(Object.keys(reservations).length == 0){es.status(200).json({status:404,message:"not Found",data:[]})}
         res.status(200).json({status:200,message:"leido correctamente",data:reservations});
     }
@@ -30,12 +30,19 @@ const updatebyIdState = async(req,res)=>{
     try{
         console.log("entra en spaces.Controller.updatebyIdStateReservation");
         reservations=await crud.updatebyIdStateReservation(req);
-        if(Object.keys(reservations).length == 0){res.status(200).json({status:404,message:"not Found",data:[]})}
-        res.status(200).json({status:200,message:"modificado correctamente",data:reservations});
+        if(reservations == undefined){
+            res.status(200).json({status:404,message:"not Found",data:[]})
+            return;
+        }
+        else{
+            res.status(200).json({status:200,message:"modificado correctamente",data:reservations});
+            return;
+        }
     }
     catch(err){   
         console.log(err.stack);
         res.status(401).json({status:401,message:err.message,data:[]});
+        return;
     }
 };
 module.exports = {

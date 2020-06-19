@@ -16,25 +16,32 @@ const findOneUser = async (req,res,err) => { //lee filtrando email o name o el p
     try{
         if(!req.query.hasOwnProperty('email') || req.query.email==""){
             res.status(200).json({status:400,message:"falta en el query email",data:[]});
+            return;
         }
         const user = await crud.findOneUser(req.query.email);
-        if(Object.keys(user).length == 0) res.status(200).json({status:404,message:"NOT FOUND email",data:[]});
-
-        console.log(user);
-        //res.json(newUser);
-        res.status(200).json({status:200,message:"leido correctamente",data:user});
-        //}
+        if(user == undefined || user.length ==0){
+            res.status(200).json({status:404,message:"NOT FOUND email",data:[]});
+        } 
+        else{
+            console.log(user);
+            //res.json(newUser);
+            res.status(200).json({status:200,message:"leido correctamente",data:user});
+        }
     }
     catch(err){   
         res.status(404).json({status:404,message:err.message,data:user});
     }
 
-};
+}; 
 const updateOneUser = async(req,res,next)=>{
     try{
         const user=await crud.updateOneUser(req);
-        if(Object.keys(user).length == 0) res.status(200).json({status:404,message:"NOT FOUND email",data:[]});
-        res.status(200).json({status:200,message:"modificado correctamente",data:user});
+        if(user == undefined){
+            res.status(200).json({status:404,message:"NOT FOUND email",data:[]});
+        } 
+        else{
+            res.status(200).json({status:200,message:"modificado correctamente",data:user});
+        }
     }
     catch(err){   
         res.status(401).json({status:401,message:err.message,data:[]});

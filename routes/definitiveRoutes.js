@@ -17,7 +17,8 @@ router.route('/new')
 
 
 router.route('/token')
-.get(authController.authUser, authController.getToken);
+//.get(authController.authUser);
+.get(authController.authUser,authController.getToken);
 
 
 router.route('/users')
@@ -28,7 +29,7 @@ router.route('/blogs')
 .get(blogsController.fullListOfBlogs);
 
 router.route('/experiences')
-.get(experiencesController.fullListOfExperiences);
+.get(experiencesController.fullListOfExperiences); 
 
 router.route('/spaces/new')
 .post(spacesController.newSpace);
